@@ -15,6 +15,8 @@ class ClienteController extends Controller
     public function index()
     {
         //
+        //if($clientes.usuario=="alum"){
+        //}
         $clientes = Cliente::all(); 
         //foreach($clientes as $cliente){
         //    echo $cliente->nombre."</br>";        
@@ -30,9 +32,13 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //$d = new \stdClass();
+        //$d->titulo = $request->input('titulo');
+        //$d->descripcion = $request->input('descripcion');
+        Cliente::create($request->all());
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -55,12 +61,12 @@ class ClienteController extends Controller
     public function show($id)
     {
         //
-        $cliente= Cliente::find($id);
-        echo "$cliente->nombre<br>";
-        echo "$cliente->apellido<br>";
-        echo "$cliente->telefono<br>";
-        echo "$cliente->direccion<br>";
-        
+        $cliente= Cliente::findOrFail($id);
+        //echo "$cliente->nombre<br>";
+        //echo "$cliente->apellido<br>";
+        //echo "$cliente->telefono<br>";
+        //echo "$cliente->direccion<br>";
+        return response()->json($cliente);
     }
 
     /**
@@ -83,7 +89,13 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+            Cliente::findOrFail($id)->update($request->all());
+            return response()->json(['success' => true]);
+        
+
+        
+        
     }
 
     /**
@@ -94,7 +106,8 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cliente::findOrFail($id)->delete();
+        return response()->json(['success' => true]);
     }
 }
 

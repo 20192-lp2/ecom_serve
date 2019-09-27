@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('cliente', 'ClienteController@index');
+Route::get('cliente/{id}', 'ClienteController@show');
 Route::post('cliente', 'ClienteController@create');
 Route::put('cliente/{id}', 'ClienteController@update');
 Route::delete('cliente/{id}', 'ClienteController@destroy');
