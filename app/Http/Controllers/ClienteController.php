@@ -19,9 +19,10 @@ class ClienteController extends Controller
         //foreach($clientes as $cliente){
         //    echo $cliente->nombre."</br>";        
         //}
-        return response()->json(['success' => true,
-            'data' => $clientes,
-            'message' => 'Operacion Correcta'], 200);
+        // return response()->json(['success' => true,
+        //    'data' => $clientes,
+        //    'message' => 'Operacion Correcta'], 200);
+        return response()->json($clientes);
     }
 
     /**
